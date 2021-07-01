@@ -14,6 +14,6 @@ uniform vec3 lightColor; //directional light color
 void main() {
   vec3 lightDirNorm = normalize(lightDirection);
   vec3 nNormal = normalize(fsNormal);
-  vec3 lambertColor = texture(u_texture, uvFS) * lightColor * dot(-lightDirNorm, nNormal);
+  vec3 lambertColor = texture(u_texture, uvFS).rgb * lightColor * dot(-lightDirNorm, nNormal);
   outColor = vec4(clamp(lambertColor, 0.0, 1.0),1.0);
 }
