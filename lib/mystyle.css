@@ -151,7 +151,7 @@ body {
     background: #c79d8a;
 }
 .gfg-button:active {
-    background: #4a9764;
+    background: #f5da7b;
 }
 .gfg-link {
     padding-top: 20px;
@@ -165,6 +165,6 @@ body {
 }
 .gfg-link a:hover {
     text-decoration: none;
-    color: #67d18a;
+    color: #d1b367;
     font-size: 15px;
 }
