@@ -10,11 +10,12 @@ out vec3 fsPosition;
 
 uniform mat4 matrix;
 uniform mat4 nMatrix;
+uniform mat4 pMatrix;
 
 void main() {
   uvFS = a_uv;
 
   fsNormal = mat3(nMatrix) * inNormal;
-  fsPosition = (matrix * vec4(a_position, 1.0)).xyz;
+  fsPosition = (pMatrix * vec4(a_position, 1.0)).xyz;
   gl_Position = matrix * vec4(a_position,1.0);
 }
