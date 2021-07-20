@@ -19,19 +19,19 @@ uniform vec3 ambientColor;
 uniform vec3 mSpecColor; //material specular color
 uniform float mSpecPower;
 
-vec3 lambDiffuse(vec3 lx, vec3 n) {
+vec3 lambDiffuse(vec3 lightDir, vec3 n) {
   vec3 textureColor = texture(u_texture, uvFS).xyz;
-  return textureColor * clamp(dot(normalize(lx), n), 0.0, 1.0);
+  return textureColor * clamp(dot(normalize(lightDir), n), 0.0, 1.0);
 }
 
-vec3 phongSpecular(vec3 lx, vec3 eyeDir, vec3 n) {
-  lx = normalize(lx);
-  vec3 r = 2.0 * dot(lx, n) * n - lx;
+vec3 phongSpecular(vec3 lightDir, vec3 eyeDir, vec3 n) {
+  lightDir = normalize(lightDir);
+  vec3 r = 2.0 * dot(lightDir, n) * n - lightDir;
   return mSpecColor * pow(clamp(dot(eyeDir, r), 0.0, 1.0), mSpecPower);
 }
 
-vec3 fBRDF(vec3 lx, vec3 eyeDir, vec3 n) {
-  return clamp(lambDiffuse(lx, n) + phongSpecular(lx, eyeDir, n), 0.0, 1.0);
+vec3 fBRDF(vec3 lightDir, vec3 eyeDir, vec3 n) {
+  return clamp(lambDiffuse(lightDir, n) + phongSpecular(lightDir, eyeDir, n), 0.0, 1.0);
 }
 
 void main() {

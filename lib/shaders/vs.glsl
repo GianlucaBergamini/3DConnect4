@@ -1,16 +1,16 @@
 #version 300 es
 
-in vec3 a_position; // uguale a inPosition
+in vec3 a_position; // vertex positions
 in vec2 a_uv;
-in vec3 inNormal;
+in vec3 inNormal; // vertex normals
 
 out vec2 uvFS;
 out vec3 fsNormal;
 out vec3 fsPosition;
 
-uniform mat4 matrix;
-uniform mat4 nMatrix;
-uniform mat4 pMatrix;
+uniform mat4 matrix; // projection matrix
+uniform mat4 nMatrix; // invert transpose of the view world matrix
+uniform mat4 pMatrix; // world matrix
 
 void main() {
   uvFS = a_uv;
